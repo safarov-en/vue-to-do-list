@@ -5,7 +5,7 @@
     <div class="card" v-for="task in tasks" :key="task.id">
       <h2 class="card-title">
         {{task.name}}
-        <AppStatus :type="task.date" />
+        <AppStatus :type="task.status" />
       </h2>
       <p>
         <strong>
@@ -14,7 +14,9 @@
           </small>
         </strong>
       </p>
-      <button class="btn primary">Посмотреть</button>
+      <router-link :to="'/task/'+task.id">
+        <button class="btn primary">Посмотреть</button>
+      </router-link>
     </div>
   </template>
 </template>
