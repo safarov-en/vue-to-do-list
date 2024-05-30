@@ -1,16 +1,16 @@
 <template>
-  <h1 class="text-white center">Задач пока нет</h1>
-  <template >
-    <h3 class="text-white">Всего активных задач: 0</h3>
-    <div class="card">
+  <h1 class="text-white center" v-if="!tasksLength">Задач пока нет</h1>
+  <template v-else>
+    <h3 class="text-white">Всего активных задач: {{ tasksLength }}</h3>
+    <div class="card" v-for="task in tasks" :key="task.id">
       <h2 class="card-title">
-        Название задачи
-        <AppStatus :type="'done'" />
+        {{task.name}}
+        <AppStatus :type="task.date" />
       </h2>
       <p>
         <strong>
           <small>
-            {{new Date().toLocaleDateString()}}
+            {{task.date}}
           </small>
         </strong>
       </p>
@@ -20,9 +20,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import AppStatus from '../components/AppStatus'
 
 export default {
-  components: {AppStatus}
+  components: {AppStatus},
+  computed: {
+    ...mapGetters(['tasks', 'tasksLength'])
+  }
 }
 </script>
