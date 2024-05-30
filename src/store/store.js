@@ -12,6 +12,9 @@ export default createStore({
         },
         tasksLength(state) {
             return state.tasks.length
+        },
+        activeTasks(state) {
+            return state.tasks.filter((item) => item.status === 'active').length
         }
     },
     mutations: {

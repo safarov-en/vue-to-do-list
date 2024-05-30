@@ -1,7 +1,7 @@
 <template>
   <h1 class="text-white center" v-if="!tasksLength">Задач пока нет</h1>
   <template v-else>
-    <h3 class="text-white">Всего активных задач: {{ tasksLength }}</h3>
+    <h3 class="text-white">Всего активных задач: {{ activeTasks }}</h3>
     <div class="card" v-for="task in tasks" :key="task.id">
       <h2 class="card-title">
         {{task.name}}
@@ -28,7 +28,7 @@ import AppStatus from '../components/AppStatus'
 export default {
   components: {AppStatus},
   computed: {
-    ...mapGetters(['tasks', 'tasksLength'])
+    ...mapGetters(['tasks', 'tasksLength', 'activeTasks'])
   }
 }
 </script>
